@@ -1,0 +1,19 @@
+apiVersion: configsync.gke.io/v1beta1
+kind: RootSync
+metadata:
+  name: root-sync
+  namespace: config-management-system
+spec:
+  sourceType: git
+  sourceFormat: unstructured
+  git:
+    repo: https://github.com/Umangraj434/deploy
+    branch: main
+    dir: new
+    auth: none
+    period: 30s
+    auth: token
+    #gcpServiceAccountEmail: ROOT_EMAIL
+    secretRef:
+      name: gitcred
+    noSSLVerify: true
